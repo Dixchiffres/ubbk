@@ -1,34 +1,37 @@
-name: Deploy to GitHub Pages
+name: GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Ou master, selon ta branche par défaut
+      - master  # Change si tu utilises une autre branche
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'  # Choisis la version de Ruby que tu utilises
+          ruby-version: '2.7' # ou une autre version compatible
 
-      - name: Install Jekyll and Bundler
+      - name: Install dependencies
         run: |
-          gem install jekyll bundler
+          gem install bundler
+          bundle install
 
-      - name: Build the site
-        run: |
-          cd docs
-          bundle exec jekyll build
+      - - name: Build the site
+  run: |
+    bundle exec jekyll build --source ./docs --destination ./docs/_site
+
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/_site
+        run: |
+          cp -r _site/* docs/
+          git config --global user.name "Dixchiffres"
+          git config --global user.email "ton.email@example.com" # Remplace par ton e-mail
+          git add docs/
+          git commit -m "Déploiement automatique" || echo "Pas de changements à déployer"
+          git push origin master
