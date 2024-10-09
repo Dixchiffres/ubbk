@@ -1,5 +1,5 @@
-title: Mon site Jekyll
-description: Un site de test pour GitHub Pages
-baseurl: "" # Change cela si tu déploies sur un sous-répertoire
-url: "url: "https://github.com/Dixchiffres/ubbk.git" # Remplace <USERNAME> par ton nom d'utilisateur GitHub
+title: "Mon site Jekyll"
+description: "Un site de test pour GitHub Pages"
+baseurl: "" # Change cela si tu dÃ©ploies sur un sous-rÃ©pertoire
+url: "https://github.com/Dixchiffres/ubsbanquech.git" # Remplace <USERNAME> par ton nom d'utilisateur GitHub
 theme: jekyll-theme-primer
